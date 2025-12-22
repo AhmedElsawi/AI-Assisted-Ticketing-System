@@ -1,0 +1,15 @@
+# Node / Frontend
+node_modules/
+
+# Java / Spring Boot
+target/
+
+# Python
+__pycache__/
+
+# Environment variables
+.env
+
+# IDE/editor files
+.idea/
+.vscode/
