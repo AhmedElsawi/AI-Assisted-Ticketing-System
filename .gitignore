@@ -4,7 +4,7 @@ node_modules/
 # Java / Spring Boot
 target/
 
-# Python
+#Python
 __pycache__/
 
 # Environment variables
