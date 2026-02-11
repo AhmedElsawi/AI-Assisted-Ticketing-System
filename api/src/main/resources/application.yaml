@@ -3,9 +3,9 @@ spring:
     name: api
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/ahmedelsawi
     username: postgres
-    password: oreocookie1!
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
