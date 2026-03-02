@@ -1,5 +1,8 @@
 package com.ahmedelsawi.api.tickets;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.Instant;
 
 @Entity
@@ -8,10 +11,14 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String subject;
+    @NotBlank
     private String description; 
     private String status; 
     private String priority; 
+
+    @NotNull
     @Column(name = "created_by")
     private Long createdBy; 
     @Column(name = "assigned_to")
