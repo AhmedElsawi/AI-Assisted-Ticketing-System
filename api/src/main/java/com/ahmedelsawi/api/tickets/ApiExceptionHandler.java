@@ -37,7 +37,6 @@ public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgument
         }
     }
 
-
     @ExceptionHandler(TicketNotFoundException.class)
 
     public ResponseEntity<Map<String, Object>> handleTicketNotFound(TicketNotFoundException ex) {

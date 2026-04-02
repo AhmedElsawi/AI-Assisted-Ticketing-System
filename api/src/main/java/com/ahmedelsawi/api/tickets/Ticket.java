@@ -62,6 +62,10 @@ public class Ticket {
         return createdAt;
     }
 
+    public void setId(long id){
+        this.id = id;
+    }
+
     public void setSubject(String subject){
         this.subject = subject; 
     }
