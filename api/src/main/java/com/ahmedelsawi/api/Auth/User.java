@@ -20,6 +20,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
@@ -41,6 +44,10 @@ public class User {
         return passwordHash;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -55,6 +62,10 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setRole(Role role) {
