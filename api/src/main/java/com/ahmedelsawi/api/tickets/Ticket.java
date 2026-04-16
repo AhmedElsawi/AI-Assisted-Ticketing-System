@@ -18,13 +18,17 @@ public class Ticket {
     private String status; 
     private String priority; 
 
-    @NotNull
+
     @Column(name = "created_by")
     private Long createdBy; 
     @Column(name = "assigned_to")
     private Long assignedTo; 
     @Column(name = "created_at")
     private Instant createdAt; 
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+    @Column(name = "resolved_at")
+    private Instant resolvedAt;
 
     public Ticket(){
 
@@ -62,6 +66,14 @@ public class Ticket {
         return createdAt;
     }
 
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Instant getResolvedAt() {
+        return resolvedAt;
+    }
+
     public void setId(long id){
         this.id = id;
     }
@@ -94,5 +106,12 @@ public class Ticket {
        this.createdAt = createdAt; 
     }
 
-}
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
+    public void setResolvedAt(Instant resolvedAt) {
+        this.resolvedAt = resolvedAt;
+    }
+
+}

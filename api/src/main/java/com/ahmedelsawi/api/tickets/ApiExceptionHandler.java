@@ -5,6 +5,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.validation.FieldError;
+import org.springframework.security.access.AccessDeniedException;
 
 import java.util.List;
 import java.util.Map;
@@ -43,5 +44,14 @@ public ResponseEntity<Map<String, Object>> handleValidationErrors(MethodArgument
         return ResponseEntity.status(404).body(Map.of( "error", "Not Found","message", ex.getMessage() ));
     }
 
-}
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> handleBadRequest(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(Map.of("error", "Bad Request", "message", ex.getMessage()));
+    }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Map<String, Object>> handleAccessDenied(AccessDeniedException ex) {
+        return ResponseEntity.status(403).body(Map.of("error", "Forbidden", "message", ex.getMessage()));
+    }
+
+}

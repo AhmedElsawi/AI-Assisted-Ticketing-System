@@ -1,0 +1,235 @@
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(189, 221, 196, 0.26), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(227, 187, 120, 0.12), transparent 22%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.95), rgba(249, 245, 238, 0.93));
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #202c39, #47627a);
+  color: #f8f5ef;
+  font-weight: 700;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f1b17;
+}
+
+.brand-subtitle {
+  margin: 2px 0 0;
+  font-size: 0.88rem;
+  color: #746454;
+}
+
+.auth-topbar {
+  display: flex;
+  align-items: center;
+}
+
+.panel-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #9d6f3b;
+}
+
+.auth-stage {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 20px 0;
+}
+
+.auth-frame {
+  width: min(920px, 100%);
+  min-height: 620px;
+  padding: 18px;
+  display: grid;
+  place-items: center;
+}
+
+.login-card {
+  width: min(420px, 100%);
+  padding: 32px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(201, 224, 201, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(248, 243, 234, 0.96), rgba(255, 252, 247, 0.95));
+  border: 1px solid rgba(137, 115, 84, 0.14);
+  box-shadow: 0 22px 52px rgba(67, 50, 30, 0.1);
+}
+
+.card-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.card-brand-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #1d3b55, #4d6c58);
+  color: #f8f5ef;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-brand-name {
+  margin: 0;
+  font-size: 1.24rem;
+  font-weight: 700;
+  color: #1f1b17;
+}
+
+.card-brand-subtitle {
+  margin: 2px 0 0;
+  color: #6f604f;
+}
+
+.login-card h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  color: #1f1b17;
+}
+
+.login-copy {
+  margin: 0 0 22px;
+  color: #685949;
+  line-height: 1.65;
+}
+
+.login-form {
+  display: grid;
+  gap: 16px;
+}
+
+.field-group {
+  display: grid;
+  gap: 8px;
+  color: #4c4136;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.field-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(137, 115, 84, 0.14);
+  background: rgba(251, 248, 243, 0.92);
+  color: #1f1b17;
+}
+
+.field-group input::placeholder {
+  color: #9f8d7c;
+}
+
+.role-picker {
+  display: grid;
+  gap: 10px;
+}
+
+.role-picker-label {
+  color: #4c4136;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.role-option {
+  border: 1px solid rgba(137, 115, 84, 0.14);
+  background: rgba(255, 255, 255, 0.86);
+  color: #544739;
+  border-radius: 16px;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+
+.role-option-active {
+  background: rgba(234, 242, 218, 0.92);
+  border-color: rgba(120, 152, 72, 0.32);
+  color: #4d6520;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #1d3b55, #31597d);
+  color: #f8f5ef;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-footnote {
+  margin: 18px 0 0;
+  color: #685949;
+  text-align: center;
+}
+
+.inline-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #1f3f60;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .auth-frame {
+    min-height: 580px;
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-shell {
+    padding: 12px;
+  }
+
+  .auth-frame {
+    min-height: auto;
+    padding: 74px 16px 16px;
+    border-radius: 22px;
+  }
+
+  .login-card {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .auth-stage {
+    padding: 16px;
+  }
+}

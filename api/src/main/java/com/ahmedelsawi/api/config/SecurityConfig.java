@@ -35,11 +35,15 @@ public class SecurityConfig {
       .exceptionHandling(ex -> ex.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
       .authorizeHttpRequests(auth -> auth
         .requestMatchers("/auth/login").permitAll()
+        .requestMatchers("/auth/signup").permitAll()
+        .requestMatchers("/auth/me").authenticated()
+        .requestMatchers("/admin/**").hasRole("ADMIN")
         .requestMatchers(org.springframework.http.HttpMethod.PATCH, "/tickets/*").hasAnyRole("AGENT", "ADMIN")
         .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/tickets/*").hasRole("ADMIN")
         .requestMatchers("/tickets").authenticated()
         .requestMatchers("/tickets/*").authenticated()
-        .anyRequest().permitAll()
+        .requestMatchers("/tickets/*/comments").authenticated()
+        .anyRequest().authenticated()
       )
       .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();

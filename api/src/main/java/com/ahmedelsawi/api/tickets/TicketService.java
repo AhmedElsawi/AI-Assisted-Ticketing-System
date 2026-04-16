@@ -13,6 +13,9 @@ import com.ahmedelsawi.api.Auth.User;
 @Service
 public class TicketService {
 
+    private static final List<String> ALLOWED_STATUSES = List.of("Open", "In-Progress", "Resolved", "Closed");
+    private static final List<String> ALLOWED_PRIORITIES = List.of("Low", "Medium", "High", "Urgent");
+
     private final TicketRepository repo;
     private final CurrentUserService currentUserService;
 
@@ -34,19 +37,18 @@ public class TicketService {
     //Create Tickets
      public Ticket createTicket(Ticket ticket){
         User currentUser = currentUserService.requireCurrentUser();
+        Instant now = Instant.now();
 
-        if (ticket.getStatus() == null){
-            ticket.setStatus("NOT_STARTED");
-        }
+        ticket.setStatus("Open");
 
         if (ticket.getPriority() == null){ 
              ticket.setPriority("Medium");
         }
+        validatePriority(ticket.getPriority());
 
-        if (ticket.getCreatedAt() == null){
-             ticket.setCreatedAt(Instant.now());
-        }
-
+        ticket.setCreatedAt(now);
+        ticket.setUpdatedAt(now);
+        ticket.setResolvedAt(null);
         ticket.setCreatedBy(currentUser.getId());
 
         if (currentUser.getRole() == Role.REQUESTER) {
@@ -72,10 +74,18 @@ public class TicketService {
          Ticket ticket = getTicket(id);
 
         if (updates.getStatus() != null) {
+            validateStatus(updates.getStatus());
             ticket.setStatus(updates.getStatus());
+
+            if ("Resolved".equals(updates.getStatus()) || "Closed".equals(updates.getStatus())) {
+                ticket.setResolvedAt(Instant.now());
+            } else {
+                ticket.setResolvedAt(null);
+            }
         }
 
         if (updates.getPriority() != null) {
+            validatePriority(updates.getPriority());
             ticket.setPriority(updates.getPriority());
         }
 
@@ -83,6 +93,7 @@ public class TicketService {
             ticket.setAssignedTo(updates.getAssignedTo());
         }
 
+       ticket.setUpdatedAt(Instant.now());
        return repo.save(ticket);
 
     }
@@ -92,6 +103,18 @@ public class TicketService {
             throw new TicketNotFoundException(id);
         }
         repo.deleteById(id);
+    }
+
+    private void validateStatus(String status) {
+        if (!ALLOWED_STATUSES.contains(status)) {
+            throw new IllegalArgumentException("Unsupported ticket status: " + status);
+        }
+    }
+
+    private void validatePriority(String priority) {
+        if (!ALLOWED_PRIORITIES.contains(priority)) {
+            throw new IllegalArgumentException("Unsupported ticket priority: " + priority);
+        }
     }
     
 }

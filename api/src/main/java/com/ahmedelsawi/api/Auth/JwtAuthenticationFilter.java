@@ -1,6 +1,7 @@
 package com.ahmedelsawi.api.Auth;
 
 import java.io.IOException;
+import java.time.Instant;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,6 +48,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 User user = userRepository.findByEmail(email).orElse(null);
 
                 if (user != null) {
+                    user.setStatus("Online");
+                    user.setLastActiveAt(Instant.now());
+                    userRepository.save(user);
+
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
                                     user,

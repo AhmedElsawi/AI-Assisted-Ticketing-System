@@ -29,6 +29,12 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    @Column(nullable = false)
+    private String status;
+
+    @Column(name = "last_active_at")
+    private Instant lastActiveAt;
+
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private Instant createdAt;
 
@@ -52,6 +58,14 @@ public class User {
         return role;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public Instant getLastActiveAt() {
+        return lastActiveAt;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -70,5 +84,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setLastActiveAt(Instant lastActiveAt) {
+        this.lastActiveAt = lastActiveAt;
     }
 }
