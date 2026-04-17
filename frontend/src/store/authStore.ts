@@ -10,39 +10,46 @@ interface AuthStore {
 }
 
 const AUTH_STORAGE_KEY = 'auth'
+const LEGACY_AUTH_KEYS = ['auth', 'token', 'user']
+
+function clearLegacyAuthState() {
+  LEGACY_AUTH_KEYS.forEach(key => localStorage.removeItem(key))
+}
 
 function loadAuthState(): Pick<AuthStore, 'user' | 'token'> {
+  clearLegacyAuthState()
+
   try {
-    const raw = localStorage.getItem(AUTH_STORAGE_KEY)
+    const raw = sessionStorage.getItem(AUTH_STORAGE_KEY)
     if (raw) {
       const parsed = JSON.parse(raw) as { user?: AuthUser; token?: string }
       if (parsed.user && parsed.token) {
-        localStorage.setItem('token', parsed.token)
-        localStorage.setItem('user', JSON.stringify(parsed.user))
+        sessionStorage.setItem('token', parsed.token)
+        sessionStorage.setItem('user', JSON.stringify(parsed.user))
         return { user: parsed.user, token: parsed.token }
       }
     }
   } catch {
-    localStorage.removeItem(AUTH_STORAGE_KEY)
+    sessionStorage.removeItem(AUTH_STORAGE_KEY)
   }
 
-  const token = localStorage.getItem('token')
-  const rawUser = localStorage.getItem('user')
+  const token = sessionStorage.getItem('token')
+  const rawUser = sessionStorage.getItem('user')
 
   if (!token || !rawUser) {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('user')
     return { user: null, token: null }
   }
 
   try {
     const user = JSON.parse(rawUser) as AuthUser
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token }))
+    sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token }))
     return { user, token }
   } catch {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    localStorage.removeItem(AUTH_STORAGE_KEY)
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('user')
+    sessionStorage.removeItem(AUTH_STORAGE_KEY)
     return { user: null, token: null }
   }
 }
@@ -53,24 +60,26 @@ export const useAuthStore = create<AuthStore>((set) => ({
   token: initialAuthState.token,
   user: initialAuthState.user,
   login: (user, token) => {
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token }))
-    localStorage.setItem('token', token)
-    localStorage.setItem('user', JSON.stringify(user))
+    clearLegacyAuthState()
+    sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token }))
+    sessionStorage.setItem('token', token)
+    sessionStorage.setItem('user', JSON.stringify(user))
     set({ user, token })
   },
   updateUser: (user, token) => {
-    const nextToken = token ?? localStorage.getItem('token')
+    const nextToken = token ?? sessionStorage.getItem('token')
     if (!nextToken) return
 
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token: nextToken }))
-    localStorage.setItem('token', nextToken)
-    localStorage.setItem('user', JSON.stringify(user))
+    sessionStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify({ user, token: nextToken }))
+    sessionStorage.setItem('token', nextToken)
+    sessionStorage.setItem('user', JSON.stringify(user))
     set({ user, token: nextToken })
   },
   logout: () => {
-    localStorage.removeItem(AUTH_STORAGE_KEY)
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    sessionStorage.removeItem(AUTH_STORAGE_KEY)
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('user')
+    clearLegacyAuthState()
     set({ user: null, token: null })
   },
 }))
