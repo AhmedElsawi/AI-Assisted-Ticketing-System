@@ -3,13 +3,18 @@ spring:
     name: api
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ahmedelsawi
-    username: postgres
-    password: ${DB_PASSWORD}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/ahmedelsawi}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
 
   jpa:
     hibernate:
       ddl-auto: validate
 
 server:
-  port: 8080
+  port: ${PORT:8080}
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  jwt:
+    secret: ${JWT_SECRET:mysecretkeymysecretkeymysecretkey12}

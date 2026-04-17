@@ -5,6 +5,7 @@ import com.ahmedelsawi.api.Auth.JwtAuthenticationFilter;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,9 +22,13 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class SecurityConfig {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  private final String frontendUrl;
 
-  public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+  public SecurityConfig(
+      JwtAuthenticationFilter jwtAuthenticationFilter,
+      @Value("${app.frontend-url:http://localhost:5173}") String frontendUrl) {
     this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    this.frontendUrl = frontendUrl;
   }
 
   @Bean
@@ -53,7 +58,7 @@ public class SecurityConfig {
   CorsConfigurationSource corsConfigurationSource() {
     return request -> {
       CorsConfiguration config = new CorsConfiguration();
-      config.setAllowedOrigins(List.of("http://localhost:5173"));
+      config.setAllowedOrigins(List.of("http://localhost:5173", frontendUrl));
       config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
       config.setAllowedHeaders(List.of("*"));
       config.setExposedHeaders(List.of("Authorization"));
