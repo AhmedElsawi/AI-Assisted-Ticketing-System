@@ -248,18 +248,18 @@ export default function AdminDashboard() {
   const agents = adminUsers.filter(adminUser => adminUser.role === 'AGENT')
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
+    <div className="dashboard-shell admin-shell" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
       background: 'radial-gradient(circle at top left, #f0eeff 0%, #e8e4fa 42%, #ddd8f5 100%)',
       fontFamily: '"Sora","Avenir Next","Segoe UI",sans-serif' }}>
 
       {/* Topbar */}
-      <header style={{
+      <header className="dashboard-topbar" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 24px', height: 54, flexShrink: 0,
         background: 'rgba(243,240,255,0.97)',
         borderBottom: '1px solid rgba(83,74,183,0.12)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div className="dashboard-brand" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 32, height: 32, borderRadius: 9,
             background: 'linear-gradient(135deg, #202c39, #47627a)',
@@ -273,7 +273,7 @@ export default function AdminDashboard() {
             border: '1px solid rgba(83,74,183,0.2)', letterSpacing: '0.02em'
           }}>Admin</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="dashboard-userbar" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
             width: 30, height: 30, borderRadius: '50%',
             background: 'linear-gradient(135deg, #534ab7, #7f77dd)',
@@ -291,10 +291,10 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="dashboard-layout" style={{ display: 'flex', flex: 1 }}>
 
         {/* Sidebar */}
-        <aside style={{
+        <aside className="dashboard-sidebar" style={{
           width: 210, flexShrink: 0,
           background: 'rgba(243,240,255,0.85)',
           borderRight: '1px solid rgba(83,74,183,0.1)',
@@ -339,7 +339,7 @@ export default function AdminDashboard() {
         </aside>
 
         {/* Main */}
-        <main style={{ flex: 1, padding: '24px 28px', minWidth: 0 }}>
+        <main className="dashboard-main" style={{ flex: 1, padding: '24px 28px', minWidth: 0 }}>
 
           {/* OVERVIEW */}
           {sidebarItem === 'overview' && (
@@ -356,7 +356,7 @@ export default function AdminDashboard() {
               </p>
 
               {/* KPI cards */}
-              <div style={{ display: 'grid',
+              <div className="metrics-grid" style={{ display: 'grid',
                 gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 18, marginBottom: 24 }}>
                 <KpiCard label="Open tickets" value={open} />
                 <KpiCard label="Overdue" value={overdue}
@@ -367,7 +367,7 @@ export default function AdminDashboard() {
                   valueColor={resolutionRate >= 70 ? '#3a5c1e' : '#a63d2f'} />
               </div>
 
-              <div style={{ display: 'grid',
+              <div className="overview-grid" style={{ display: 'grid',
                 gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: 14, marginBottom: 14 }}>
 
                 {/* Priority breakdown */}

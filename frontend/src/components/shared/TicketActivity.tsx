@@ -131,7 +131,7 @@ export default function TicketActivity({
         })}
       </div>
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8 }}>
+      <form className="ticket-reply-form" onSubmit={handleSubmit} style={{ display: 'flex', gap: 8 }}>
         <input
           value={body}
           onChange={event => setBody(event.target.value)}

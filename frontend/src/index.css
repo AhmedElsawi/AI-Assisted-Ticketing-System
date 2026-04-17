@@ -35,3 +35,173 @@ textarea,
 select {
   font: inherit;
 }
+
+img,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .dashboard-topbar {
+    height: auto !important;
+    min-height: 56px;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 12px 16px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .dashboard-brand,
+  .dashboard-userbar {
+    min-width: 0;
+  }
+
+  .dashboard-userbar {
+    margin-left: auto;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+  }
+
+  .dashboard-layout {
+    flex-direction: column !important;
+  }
+
+  .dashboard-sidebar {
+    width: 100% !important;
+    display: flex !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    padding: 10px 12px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(137, 115, 84, 0.14) !important;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    scrollbar-width: none;
+  }
+
+  .dashboard-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dashboard-sidebar > div:first-child {
+    display: none;
+  }
+
+  .dashboard-sidebar > div:not(:first-child) {
+    flex: 0 0 auto !important;
+    border-left: 0 !important;
+    border-radius: 999px !important;
+    padding: 8px 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .dashboard-main {
+    padding: 18px 14px 28px !important;
+    width: 100%;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .overview-grid,
+  .kanban-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .kanban-column {
+    min-height: auto;
+  }
+
+  .dashboard-section-header,
+  .dashboard-hero-card,
+  .activity-card > div:first-child {
+    align-items: stretch !important;
+    flex-direction: column !important;
+  }
+
+  .dashboard-actions {
+    overflow-x: auto !important;
+    padding-bottom: 4px;
+  }
+
+  .dashboard-actions button {
+    flex: 0 0 auto;
+  }
+
+  .ticket-list-row {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .ticket-row-meta {
+    width: 100%;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  .ticket-reply-form {
+    flex-direction: column !important;
+  }
+
+  .ticket-reply-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .dashboard-shell {
+    font-size: 15px;
+  }
+
+  .dashboard-topbar {
+    padding: 10px 12px !important;
+  }
+
+  .dashboard-brand {
+    width: 100%;
+  }
+
+  .dashboard-brand + .dashboard-userbar {
+    width: 100%;
+    justify-content: space-between !important;
+    margin-left: 0;
+  }
+
+  .dashboard-userbar > span {
+    max-width: 48vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dashboard-main h1 {
+    font-size: 1.25rem !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dashboard-hero-card {
+    padding: 14px !important;
+  }
+
+  .dashboard-hero-card button,
+  .form-actions button {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column !important;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}

@@ -122,18 +122,18 @@ export default function AgentDashboard() {
         : 'Tickets assigned to you'
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
+    <div className="dashboard-shell agent-shell" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
       background: 'radial-gradient(circle at top left, #eef2f7 0%, #e4ecf5 42%, #dce6f0 100%)',
       fontFamily: '"Sora","Avenir Next","Segoe UI",sans-serif' }}>
 
       {/* Topbar */}
-      <header style={{
+      <header className="dashboard-topbar" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 24px', height: 54, flexShrink: 0,
         background: 'rgba(240,245,251,0.97)',
         borderBottom: '1px solid rgba(29,59,85,0.12)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div className="dashboard-brand" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 32, height: 32, borderRadius: 9,
             background: 'linear-gradient(135deg, #202c39, #47627a)',
@@ -147,7 +147,7 @@ export default function AgentDashboard() {
             border: '1px solid rgba(29,59,85,0.2)', letterSpacing: '0.02em'
           }}>Agent</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="dashboard-userbar" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontSize: '0.75rem', color: '#3a5c1e', fontWeight: 700 }}>
             ● Online
           </span>
@@ -168,10 +168,10 @@ export default function AgentDashboard() {
         </div>
       </header>
 
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="dashboard-layout" style={{ display: 'flex', flex: 1 }}>
 
         {/* Sidebar */}
-        <aside style={{
+        <aside className="dashboard-sidebar" style={{
           width: 210, flexShrink: 0,
           background: 'rgba(240,245,251,0.85)',
           borderRight: '1px solid rgba(29,59,85,0.1)',
@@ -216,12 +216,12 @@ export default function AgentDashboard() {
         </aside>
 
         {/* Main */}
-        <main style={{ flex: 1, padding: '24px 28px', minWidth: 0 }}>
+        <main className="dashboard-main" style={{ flex: 1, padding: '24px 28px', minWidth: 0 }}>
 
           {/* KANBAN VIEW */}
           {view === 'kanban' && (
             <>
-              <div style={{ display: 'flex', alignItems: 'center',
+              <div className="dashboard-section-header" style={{ display: 'flex', alignItems: 'center',
                 justifyContent: 'space-between', marginBottom: 20 }}>
                 <div>
                   <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700,
@@ -233,7 +233,7 @@ export default function AgentDashboard() {
                   </p>
                 </div>
                 {/* Priority filter */}
-                <div style={{ display: 'flex', gap: 6 }}>
+                <div className="dashboard-actions" style={{ display: 'flex', gap: 6 }}>
                   {['ALL', 'Urgent', 'High', 'Medium', 'Low'].map(p => (
                     <button key={p} onClick={() => setFilterPriority(p)} style={{
                       padding: '4px 12px', borderRadius: 20,
@@ -250,9 +250,9 @@ export default function AgentDashboard() {
                 <p style={{ color: '#4a6a82' }}>Loading tickets...</p>
               ) : (
                 <>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
+                  <div className="kanban-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
                     {STATUSES.map(status => (
-                      <div key={status} style={{
+                      <div className="kanban-column" key={status} style={{
                         background: 'rgba(240,245,251,0.7)',
                         border: '1px solid rgba(29,59,85,0.1)',
                         borderRadius: 14, padding: 12,
@@ -313,7 +313,7 @@ export default function AgentDashboard() {
                   </div>
 
                   {latestActivityTicket && clearedActivityScope !== `${sidebarItem}:${filterPriority}` && (
-                    <section style={{
+                    <section className="activity-card" style={{
                       marginTop: 18,
                       background: 'rgba(240,245,251,0.9)',
                       border: '1px solid rgba(29,59,85,0.12)',

@@ -137,18 +137,18 @@ export default function RequesterDashboard() {
   const initials = user?.fullName?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
+    <div className="dashboard-shell requester-shell" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column',
       background: 'radial-gradient(circle at top left, #f6efe6 0%, #efe7dd 42%, #e7dfd4 100%)',
       fontFamily: '"Sora","Avenir Next","Segoe UI",sans-serif' }}>
 
       {/* Topbar */}
-      <header style={{
+      <header className="dashboard-topbar" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 24px', height: 54, flexShrink: 0,
         background: 'rgba(248,243,234,0.97)',
         borderBottom: '1px solid rgba(137,115,84,0.15)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div className="dashboard-brand" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 32, height: 32, borderRadius: 9,
             background: 'linear-gradient(135deg, #202c39, #47627a)',
@@ -162,7 +162,7 @@ export default function RequesterDashboard() {
             border: '1px solid rgba(58,92,30,0.2)', letterSpacing: '0.02em'
           }}>Requester</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="dashboard-userbar" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
             width: 30, height: 30, borderRadius: '50%',
             background: 'linear-gradient(135deg, #3a5c1e, #5a8a2e)',
@@ -180,10 +180,10 @@ export default function RequesterDashboard() {
         </div>
       </header>
 
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="dashboard-layout" style={{ display: 'flex', flex: 1 }}>
 
         {/* Sidebar */}
-        <aside style={{
+        <aside className="dashboard-sidebar" style={{
           width: 210, flexShrink: 0,
           background: 'rgba(248,243,234,0.85)',
           borderRight: '1px solid rgba(137,115,84,0.13)',
@@ -230,13 +230,13 @@ export default function RequesterDashboard() {
         </aside>
 
         {/* Main content */}
-        <main style={{ flex: 1, padding: '28px 32px', minWidth: 0 }}>
+        <main className="dashboard-main" style={{ flex: 1, padding: '28px 32px', minWidth: 0 }}>
 
           {/* LIST VIEW */}
           {sidebarItem === 'tickets' && view === 'list' && (
             <>
               {/* CTA banner */}
-              <div style={{
+              <div className="dashboard-hero-card" style={{
                 background: 'rgba(228,240,217,0.7)',
                 border: '1px solid rgba(88,140,50,0.2)',
                 borderRadius: 16, padding: '16px 20px',
@@ -305,7 +305,7 @@ export default function RequesterDashboard() {
                     }}>Create your first ticket</button>
                   </div>
                 ) : filtered.map((ticket, i) => (
-                  <div key={ticket.id}
+                  <div className="ticket-list-row" key={ticket.id}
                     onClick={() => { setSelectedTicket(ticket); setView('detail'); setSidebarItem('tickets') }}
                     style={{
                       display: 'flex', alignItems: 'center', gap: 12,
@@ -323,7 +323,7 @@ export default function RequesterDashboard() {
                       overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {ticket.subject}
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0 }}>
+                    <div className="ticket-row-meta" style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0 }}>
                       <PriorityBadge priority={ticket.priority} />
                       <StatusBadge status={ticket.status} />
                       <span style={{ fontSize: '0.75rem', color: '#9d8070', minWidth: 70, textAlign: 'right' }}>
@@ -335,7 +335,7 @@ export default function RequesterDashboard() {
               </div>
 
               {latestActivityTicket && (
-                <section style={{
+                <section className="activity-card" style={{
                   marginTop: 18,
                   background: 'rgba(248,243,234,0.9)',
                   border: '1px solid rgba(137,115,84,0.14)',
