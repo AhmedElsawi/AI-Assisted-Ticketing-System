@@ -67,8 +67,9 @@ export default function RequesterDashboard() {
 
 
   const { data: tickets = [], isLoading } = useQuery({
-    queryKey: ['tickets'],
+    queryKey: ['tickets', user?.id],
     queryFn: fetchTickets,
+    enabled: Boolean(user?.id),
   })
 
   const { mutate: submitTicket, isPending } = useMutation({

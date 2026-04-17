@@ -61,8 +61,9 @@ export default function AgentDashboard() {
   const { toast, show: showToast, hide: hideToast } = useToast()
 
   const { data: tickets = [], isLoading } = useQuery({
-    queryKey: ['tickets'],
+    queryKey: ['tickets', user?.id],
     queryFn: fetchTickets,
+    enabled: Boolean(user?.id),
   })
 
   const { mutate: patchTicket } = useMutation({

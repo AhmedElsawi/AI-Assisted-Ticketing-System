@@ -143,18 +143,21 @@ export default function AdminDashboard() {
 
 
   const { data: tickets = [], isLoading } = useQuery({
-    queryKey: ['tickets'],
+    queryKey: ['tickets', user?.id],
     queryFn: fetchTickets,
+    enabled: Boolean(user?.id),
   })
 
   const { data: adminUsers = [] } = useQuery({
-    queryKey: ['admin-users'],
+    queryKey: ['admin-users', user?.id],
     queryFn: fetchAdminUsers,
+    enabled: Boolean(user?.id),
   })
 
   const { data: adminMetrics } = useQuery({
-    queryKey: ['admin-metrics'],
+    queryKey: ['admin-metrics', user?.id],
     queryFn: fetchAdminMetrics,
+    enabled: Boolean(user?.id),
   })
 
   const { mutate: removeTicket } = useMutation({
