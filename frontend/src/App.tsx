@@ -1,59 +1,87 @@
-import './App.css'
+// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+// import Login from './pages/Login'
+// import RequesterDashboard from './pages/requester/RequesterDashboard'
+// import AgentDashboard from './pages/agent/AgentDashboard'
+// import AdminDashboard from './pages/admin/AdminDashboard'
+// import ProtectedRoute from './components/layout/ProtectedRoute'
 
-function App() {
+// const queryClient = new QueryClient()
+
+// function App() {
+//   return (
+//     <QueryClientProvider client={queryClient}>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/requester" element={
+//             <ProtectedRoute allowedRoles={['REQUESTER']}>
+//               <RequesterDashboard />
+//             </ProtectedRoute>
+//           }/>
+//           <Route path="/agent" element={
+//             <ProtectedRoute allowedRoles={['AGENT']}>
+//               <AgentDashboard />
+//             </ProtectedRoute>
+//           }/>
+//           <Route path="/admin" element={
+//             <ProtectedRoute allowedRoles={['ADMIN']}>
+//               <AdminDashboard />
+//             </ProtectedRoute>
+//           }/>
+//           <Route path="*" element={<Navigate to="/login" replace />} />
+//         </Routes>
+//       </BrowserRouter>
+//     </QueryClientProvider>
+//   )
+// }
+
+// export default App
+
+
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Login from './pages/Login'
+import RequesterDashboard from './pages/requester/RequesterDashboard'
+import AgentDashboard from './pages/agent/AgentDashboard'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import NotFound from './pages/NotFound'
+import ProtectedRoute from './components/layout/ProtectedRoute'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 30000,
+    }
+  }
+})
+
+export default function App() {
   return (
-    <main className="auth-shell">
-      <header className="auth-topbar">
-        <div className="brand-lockup">
-          <div className="brand-mark">D</div>
-          <div>
-            <p className="brand-name">Deskflow</p>
-            <p className="brand-subtitle">Support operations</p>
-          </div>
-        </div>
-      </header>
-
-      <section className="auth-stage">
-        <div className="auth-frame">
-          <div className="login-card">
-            <div className="card-brand">
-              <div className="card-brand-mark">D</div>
-              <div>
-                <p className="card-brand-name">Deskflow</p>
-                <p className="card-brand-subtitle">Support operations platform</p>
-              </div>
-            </div>
-
-            <p className="panel-label">Welcome back</p>
-            <h1>Sign in to your workspace</h1>
-            <p className="login-copy">
-              Access your tickets, workflows, and role-specific dashboard.
-            </p>
-
-            <form className="login-form">
-              <label className="field-group">
-                <span>Email address</span>
-                <input type="email" placeholder="user@company.com" />
-              </label>
-
-              <label className="field-group">
-                <span>Password</span>
-                <input type="password" placeholder="••••••••" />
-              </label>
-
-              <button className="primary-button" type="submit">
-                Sign in
-              </button>
-            </form>
-
-            <p className="auth-footnote">
-              New here? <button className="inline-link" type="button">Create account</button>
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/requester" element={
+            <ProtectedRoute allowedRoles={['REQUESTER']}>
+              <RequesterDashboard />
+            </ProtectedRoute>
+          }/>
+          <Route path="/agent" element={
+            <ProtectedRoute allowedRoles={['AGENT']}>
+              <AgentDashboard />
+            </ProtectedRoute>
+          }/>
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRoles={['ADMIN']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }/>
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }
-
-export default App
