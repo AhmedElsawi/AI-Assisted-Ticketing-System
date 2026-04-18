@@ -162,6 +162,12 @@ svg {
     padding: 18px !important;
   }
 
+  .account-support-card {
+    width: 100%;
+    max-width: none !important;
+    align-self: stretch !important;
+  }
+
   .account-field-row {
     grid-template-columns: 1fr !important;
     gap: 8px !important;

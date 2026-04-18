@@ -280,7 +280,7 @@ export default function RequesterDashboard() {
               </div>
 
               {/* Ticket cards */}
-              <div className="account-settings-grid" style={{
+              <div style={{
                 background: 'rgba(248,243,234,0.88)',
                 border: '1px solid rgba(137,115,84,0.14)',
                 borderRadius: 18, overflow: 'hidden'
@@ -562,7 +562,7 @@ export default function RequesterDashboard() {
                 Manage your support profile and session
               </p>
 
-              <div style={{
+              <div className="account-settings-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: 'minmax(0, 1.25fr) minmax(280px, 0.75fr)',
                 gap: 16,
