@@ -604,7 +604,7 @@ export default function AdminDashboard() {
           {/* USERS & ROLES */}
           {sidebarItem === 'users' && (
             <>
-              <div style={{ display: 'flex', justifyContent: 'space-between',
+              <div className="users-header" style={{ display: 'flex', justifyContent: 'space-between',
                 alignItems: 'center', gap: 14, marginBottom: 20 }}>
                 <div>
                   <h1 style={{ margin: '0 0 4px', fontSize: '1.5rem', fontWeight: 700,
@@ -628,7 +628,7 @@ export default function AdminDashboard() {
               </div>
 
               {showInviteForm && (
-                <form onSubmit={handleInviteSubmit} style={{
+                <form className="invite-user-form" onSubmit={handleInviteSubmit} style={{
                   background: 'rgba(243,240,255,0.85)',
                   border: '1px solid rgba(83,74,183,0.12)',
                   borderRadius: 14,
@@ -694,13 +694,13 @@ export default function AdminDashboard() {
                 </form>
               )}
 
-              <div style={{
+              <div className="users-list-card" style={{
                 background: 'rgba(243,240,255,0.86)',
                 border: '1px solid rgba(83,74,183,0.12)',
                 borderRadius: 14,
                 overflow: 'hidden',
               }}>
-                <div style={{
+                <div className="users-list-header" style={{
                   display: 'grid',
                   gridTemplateColumns: '1.1fr 1.4fr 150px 110px 100px',
                   gap: 12,
@@ -722,7 +722,7 @@ export default function AdminDashboard() {
                 {adminUsers.map(adminUser => {
                   const isActive = adminUser.status === 'Online'
                   return (
-                    <div key={adminUser.id} style={{
+                    <div className="users-list-row" key={adminUser.id} style={{
                       display: 'grid',
                       gridTemplateColumns: '1.1fr 1.4fr 150px 110px 100px',
                       gap: 12,

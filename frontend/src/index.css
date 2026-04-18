@@ -150,6 +150,80 @@ svg {
   .ticket-reply-form button {
     width: 100%;
   }
+
+  .account-settings-grid {
+    grid-template-columns: 1fr !important;
+    max-width: none !important;
+  }
+
+  .account-settings-card,
+  .account-support-card,
+  .danger-zone-card {
+    padding: 18px !important;
+  }
+
+  .account-field-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+
+  .account-field-row input {
+    width: 100%;
+  }
+
+  .account-actions {
+    justify-content: stretch !important;
+  }
+
+  .account-actions button,
+  .danger-zone-card button {
+    width: 100%;
+  }
+
+  .users-header {
+    align-items: stretch !important;
+    flex-direction: column !important;
+  }
+
+  .users-header button {
+    width: 100%;
+  }
+
+  .invite-user-form {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+  }
+
+  .invite-user-form button {
+    width: 100%;
+  }
+
+  .users-list-card {
+    background: transparent !important;
+    border: 0 !important;
+    overflow: visible !important;
+    display: grid;
+    gap: 10px;
+  }
+
+  .users-list-header {
+    display: none !important;
+  }
+
+  .users-list-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    padding: 14px !important;
+    border: 1px solid rgba(83, 74, 183, 0.12) !important;
+    border-radius: 14px !important;
+    background: rgba(243, 240, 255, 0.86) !important;
+  }
+
+  .users-list-row > span,
+  .users-list-row > select {
+    width: 100%;
+  }
 }
 
 @media (max-width: 560px) {
@@ -196,6 +270,15 @@ svg {
   }
 
   .form-actions {
+    flex-direction: column !important;
+  }
+
+  .account-settings-card > div:first-child {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+
+  .danger-zone-card > div {
     flex-direction: column !important;
   }
 

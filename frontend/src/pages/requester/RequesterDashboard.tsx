@@ -280,7 +280,7 @@ export default function RequesterDashboard() {
               </div>
 
               {/* Ticket cards */}
-              <div style={{
+              <div className="account-settings-grid" style={{
                 background: 'rgba(248,243,234,0.88)',
                 border: '1px solid rgba(137,115,84,0.14)',
                 borderRadius: 18, overflow: 'hidden'
@@ -568,7 +568,7 @@ export default function RequesterDashboard() {
                 gap: 16,
                 maxWidth: 920,
               }}>
-                <section style={{
+                <section className="account-settings-card" style={{
                   background: 'rgba(248,243,234,0.9)',
                   border: '1px solid rgba(137,115,84,0.14)',
                   borderRadius: 18,
@@ -599,8 +599,8 @@ export default function RequesterDashboard() {
                     </div>
                   </div>
 
-                  <form onSubmit={handleProfileSubmit} style={{ display: 'grid', gap: 12 }}>
-                    <label style={{
+                  <form className="account-settings-form" onSubmit={handleProfileSubmit} style={{ display: 'grid', gap: 12 }}>
+                    <label className="account-field-row" style={{
                       display: 'grid',
                       gridTemplateColumns: '130px 1fr',
                       gap: 12,
@@ -627,7 +627,7 @@ export default function RequesterDashboard() {
                       { label: 'Email address', value: user?.email || 'Not set' },
                       { label: 'Account type', value: 'Requester' },
                     ].map(item => (
-                      <div key={item.label} style={{
+                      <div className="account-field-row" key={item.label} style={{
                         display: 'grid',
                         gridTemplateColumns: '130px 1fr',
                         gap: 12,
@@ -649,7 +649,7 @@ export default function RequesterDashboard() {
                       </div>
                     ))}
 
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <div className="account-actions" style={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <button disabled={isSavingProfile || profileName.trim() === user?.fullName}
                         style={{ background: 'linear-gradient(135deg, #1d3b55, #31597d)',
                           color: '#f8f5ef', border: 0, borderRadius: 10,
@@ -662,7 +662,7 @@ export default function RequesterDashboard() {
                   </form>
                 </section>
 
-                <aside style={{
+                <aside className="account-support-card" style={{
                   background: 'rgba(228,240,217,0.72)',
                   border: '1px solid rgba(88,140,50,0.18)',
                   borderRadius: 18,
@@ -708,7 +708,7 @@ export default function RequesterDashboard() {
                 </aside>
               </div>
 
-              <section style={{
+              <section className="danger-zone-card" style={{
                 marginTop: 16,
                 maxWidth: 920,
                 background: 'rgba(253,232,224,0.62)',
