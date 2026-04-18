@@ -85,7 +85,7 @@ export default function Login() {
                   <span>Full name</span>
                   <input
                     type="text"
-                    placeholder="Jane Doe"
+                    placeholder="full name"
                     value={fullName}
                     onChange={e => setFullName(e.target.value)}
                     required
